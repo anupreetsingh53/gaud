@@ -4,7 +4,7 @@ import streamlit as st
 from st_custom_components import st_audiorec
 import string
 from itertools import count
-from PIL import Image, ImageTk
+from PIL import Image
 import os
 import time
 import numpy as np

@@ -2,3 +2,4 @@ numpy==1.23.1
 Pillow==9.5.0
 SpeechRecognition==3.10.0
 streamlit==1.23.1
+tk

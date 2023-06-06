@@ -1,46 +1,60 @@
-# streamlit_audio_recorder (Custom Component)
+# Speech-to-Sign-language-Translator
 
-Implemented by [Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - (work in progress)<br/>
-Based on [doppelgunner](https://github.com/doppelgunner/audio-react-recorder)'s [Audio-React-Recorder](https://www.npmjs.com/package/audio-react-recorder)<br/>
+**An application which takes in live speech or audio recording as input, converts it into text and displays the relevant Indian Sign Language images or GIFs.**
 
-![Screenshot 2022-05-16 at 16 58 36](https://user-images.githubusercontent.com/82606558/168626886-de128ffa-a3fe-422f-a748-395c29fa42f9.png)<br/>
+- Front-end using EasyGui.
+- Speech as input through microphone using PyAudio.
+- Speech recognition using Google Speech API and Sphix(for offline use).
+- Text Preprocessing using NLP.
+- Dictionary based Machine Translation.
 
-## Features & Outlook
-- Managing access to your microphone via the browser's Media-API
-- Record, playback and revert audio-captures within the streamlit app
-- Download the final recording to your local system (WAV, 16 bit, 44.1 kHz)
-- Directly return audio recording-data to Python backend! (arrayBuffer)<br><br>
-- **NEW:** Reduced repo size by removal of redundant node-modules! (393Mb --> 70Mb)
-- **NEW:** Simplified SETUP TUTORIAL, that will get you to record audio within no time!
+## To run the application.
 
+1. Open the Downloads folder and then open the terminal.
+2. From the terminal, run the _main_ python file using the command **python main.py**.
+3. The application interface appears on the screen.
+4. Hit the record button to start taking speech as input.
+5. Any speech recorded is then processed and respective outputs are shown accordingly.
+6. To exit the application using speech, say _goodbye_.
 
-## Component Setup - step by step
-**1.** Import and install relevant libraries to your Python project. 
-```
-import os
-import numpy as np
-import streamlit as st
-from io import BytesIO
-import streamlit.components.v1 as components
-```
-**2.** Add the folder `/st_audiorec` to the top level directory of your project.<br><br>
-**3.** Add the file `st_custom_components.py` to your project wherever you like.<br><br>
-**4.** Import the function `st_audiorec()` to your main streamlit application code.
-```
-from st_custom_components import st_audiorec
-```
-**5.** Add an instance of the audio recorder component to your streamlit app's code.
-```
-wav_audio_data = st_audiorec()
+**Sign language is a visual language that is used by deaf people as their mother tongue. Unlike acoustically conveyed sound patterns, sign language uses body language and manual communication to fluidly convey the thoughts of a person. Due to considerable time required in learning the Sign Language, it becomes difficult to communicate with these specially abled people, and thus creates a communication gap.**
 
-if wav_audio_data is not None:
-    # display audio data as received on the backend
-    st.audio(wav_audio_data, format='audio/wav')
-    
-# INFO: by calling the function an instance of the audio recorder is created
-# INFO: once a recording is completed, audio data will be saved to wav_audio_data
-```
-**6. Enjoy recording audio inside your streamlit app! 🎈**
+## Objective
 
-Feel free to reach out to me in case you have any questions! <br>
-Pls consider leaving a `star` ☆ with this repository to show your support.
+**This Audio to Sign Language converter aims at :**
+
+- Providing information access and services to deaf people in Indian sign language.
+- Developing a scalable project which can be extended to capture whole vocabulary of ISL through manual and non-manual signs
+
+It can be developed as a desktop or mobile application to enable specially abled people to communicate easily and effectively with others
+
+**Sign language is a visual language that is used by deaf people as their mother tongue. Unlike acoustically conveyed sound patterns, sign language uses body language and manual communication to fluidly convey the thoughts of a person. Due to considerable time required in learning the Sign Language, people find it difficult to communicate with these specially abled people, creating a communication gap. Thus, we propose an application which takes in live speech or audio recording as input, converts it into text and displays the relevant Indian Sign Language images or GIFs.**
+
+## Algorithm
+
+Audio to Sign Language Translator
+
+1. Start
+2. Getting the Speech
+   1. Listen for 1 second and calibrate the energy threshold for ambient noise
+      levels.
+   2. Listen the Speech using Microphone.
+      Now the energy threshold is already set to a good value, and we can
+      reliably catch speech right away.
+3. Recognise the Speech.
+4. Convert Speech to Text.
+   1. Make the Text to lowercase for further manipulation.
+5. Detected Text
+   1. If “goodbye” then exit.
+      2.Else if Detected Text in predefined Dictionary Words. Display
+      respective GIFs of the Phrase.
+   2. Else Count the Letters of the Word/Phrase.
+      1. Display the Visual of the phrase with some delay of Actions.
+   3. Continue all the steps from Step 3, and continue till the Speech Ends.
+6. If Error in Step 2, That is if no Speech Detected then display error message
+   “Could not listen”.
+
+**Due to considerable time required in learning the Sign Language, people find it difficult to communicate with these specially abled people, creating a communication gap. Thus the Audio to Sign Language converter is important and significant because it helps in providing information access and services to deaf people in Indian sign language and develops a scalable project which can be extended to capture whole vocabulary of ISL through manual and non-manual signs. It also can be developed as a desktop or mobile application to enable specially abled people to communicate easily and effectively with others.**
+
+The project before enhancement and modification was cloned from <a href = "https://github.com/Shubh-Yadav/Automatic-Indian-Sign-Language-Translator">Shubh-Yadav</a>
+This project is now modified for better and enhanced speech recognition. Also added the program to work in offline mode.
